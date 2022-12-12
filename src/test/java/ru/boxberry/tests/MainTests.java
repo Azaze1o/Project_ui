@@ -1,6 +1,5 @@
 package ru.boxberry.tests;
 
-import com.codeborne.selenide.selector.ByText;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

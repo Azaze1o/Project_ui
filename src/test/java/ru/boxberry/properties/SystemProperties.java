@@ -14,7 +14,7 @@ public class SystemProperties {
         return System.getProperty("browserSize", "1920x1080");
     }
 
-    public static String remoteUrl() {
+    public static String remote() {
         return System.getProperty("remoteUrl", ""); //https://user1:1234@selenoid.autotests.cloud/wd/hub
     }
 
