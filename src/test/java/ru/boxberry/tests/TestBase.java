@@ -22,9 +22,9 @@ public class TestBase {
         Configuration.browserVersion = SystemProperties.browserVersion();
         Configuration.browserSize = SystemProperties.browserSize();
         //Configuration.remote="https://user1:1234@selenoid.autotests.cloud/wd/hub";
-        if (!SystemProperties.remote().equals("")) {
+        //if (!SystemProperties.remote().equals("")) {
             Configuration.remote = SystemProperties.remote();
-        }
+        //}
     }
 
     @AfterEach
