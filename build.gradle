@@ -1,45 +1,51 @@
 plugins {
-    id 'java'
-    id 'io.qameta.allure' version '2.10.0'
+    id 'java-library'
+    id 'io.qameta.allure' version '2.11.0'
 }
+
+version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
 }
 
-compileTestJava {
-    options.encoding = 'UTF-8'
-}
-
-def allureVersion = "2.19.0",
-    slf4jVersion = "1.7.32"
+def allureVersion = '2.20.0'
 
 allure {
     report {
         version.set(allureVersion)
     }
-    adapter { // отвечает за появление папочки build/allure-results
-        aspectjWeaver.set(true) //обработка аннотации @Step
+    adapter {
+        aspectjWeaver.set(true)
         frameworks {
-            junit5 { //название фреймворка
-                adapterVersion.set(allureVersion) //версия интеграции фреймворка и Allure
+            junit5 {
+                adapterVersion.set(allureVersion)
             }
         }
     }
 }
 
 dependencies {
-    testImplementation (
+    testImplementation(
             "org.assertj:assertj-core:3.23.1",
-            "com.codeborne:selenide:6.7.4",
-            "org.aeonbits.owner:owner:1.0.12",
+            "org.junit.jupiter:junit-jupiter:5.9.1",
+            "org.slf4j:slf4j-api:1.7.28",
+            "org.slf4j:slf4j-simple:1.7.28",
+            "com.codeborne:selenide:6.10.1",
+            "com.codeborne:pdf-test:1.7.0",
+            "com.github.javafaker:javafaker:1.0.2",
             "io.qameta.allure:allure-selenide:$allureVersion",
-            "org.junit.jupiter:junit-jupiter:5.9.0",
-            "org.slf4j:slf4j-simple:$slf4jVersion"
+            "org.aeonbits.owner:owner:1.0.4"
     )
+}
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 }
 
 tasks.withType(Test) {
+    systemProperties(System.getProperties())
     useJUnitPlatform()
 
     testLogging {
@@ -52,5 +58,6 @@ tasks.withType(Test) {
 
 test {
     useJUnitPlatform()
-}
+    systemProperties(System.getProperties())
 
+}
