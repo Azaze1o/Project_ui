@@ -7,9 +7,6 @@ import org.aeonbits.owner.Config;
 })
 public interface WebDriverConfig extends Config{
 
-    @Key("baseUrl")
-    @DefaultValue("https://boxberry.ru/")
-    String baseUrl();
     @Key("browser")
     @DefaultValue("chrome")
     String browser();
@@ -24,9 +21,5 @@ public interface WebDriverConfig extends Config{
 
     @Key("remote")
     String remote();
-
-    String selenoidLogin();
-
-    String selenoidPassword();
 
 }
