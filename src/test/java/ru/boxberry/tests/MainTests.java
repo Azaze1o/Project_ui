@@ -1,6 +1,7 @@
 package ru.boxberry.tests;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.*;
@@ -10,8 +11,14 @@ import static com.codeborne.selenide.Selenide.open;
 import static io.qameta.allure.Allure.step;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class MainTests extends TestBase{
+import ru.boxberry.pages.MainPage;
 
+public class MainTests extends TestBase {
+
+    MainPage mainPage = new MainPage();
+    TestData data = new TestData();
+
+    @Tag("Web")
     @Test
     @DisplayName("Проверка контактов в Екатеринбурге")
     void checkContactTest() {
@@ -31,6 +38,7 @@ public class MainTests extends TestBase{
                 $(".cc-phone").shouldHave(text("8-800-234-80-00")));
     }
 
+    @Tag("Web")
     @Test
     @DisplayName("Проверка отслеживания посылки")
     void checkTrackBoxTest() {
@@ -38,15 +46,16 @@ public class MainTests extends TestBase{
                 open("https://boxberry.ru/"));
 
         step("Открыть раздел отслеживания посылок'", () -> {
-                    $(byText("Доставка")).hover();
-                    $(byText("Отследить посылку")).click();
-                });
+            $(byText("Доставка")).hover();
+            $(byText("Отследить посылку")).click();
+        });
 
         step("Проверить раздел на который попали", () -> {
             $(".pageTitle__title").shouldHave(text("Отследить посылку"));
         });
     }
 
+    @Tag("Web")
     @Test
     @DisplayName("Выбор города")
     void chooseCityTest() {
@@ -64,6 +73,7 @@ public class MainTests extends TestBase{
         });
     }
 
+    @Tag("Web")
     @Test
     @DisplayName("Проверка главной страницы")
     void checkTitleTest() {
@@ -73,9 +83,54 @@ public class MainTests extends TestBase{
         step("Страница называется 'Boxberry - служба доставки для интернет-магазинов и частных лиц.'", () -> {
             String expectedTitle = "Boxberry – служба доставки для интернет-магазинов и частных лиц.";
             String actualTitle = title();
-            
+
             assertThat(actualTitle).isEqualTo(expectedTitle);
         });
+    }
+
+    @Tag("Web")
+    @Test
+    @DisplayName("Открытие вкладки во всплывающем меню")
+    void navMenuTest() {
+        step("Открыть 'https://boxberry.ru/'", () ->
+                open("https://boxberry.ru/"));
+
+        step("Выбираем вкладку в навигационном меню", () ->
+                mainPage.chooseNavItem(data.titleNavItem));
+        step("Проверяем результат открытия вкладки", () ->
+                mainPage.checkNavItem(data.titleResultNavItem));
+    }
+
+    @Tag("Web")
+    @Test
+    @DisplayName("Открытие вкладок на главной странице")
+    void stableMenuTest() {
+        step("Открыть 'https://boxberry.ru/'", () ->
+                open("https://boxberry.ru/"));
+
+        step("Выбираем вкладку на главной странице", () ->
+                mainPage.chooseMenuList(data.titleMenuItem)
+        );
+
+        step("Проверяем результат открытой вкладки", () ->
+                mainPage.checkMenuList()
+        );
+    }
+
+    @Tag("Web")
+    @Test
+    @DisplayName("Поиск по сайту")
+    void costCalcTest() {
+        step("Открыть 'https://boxberry.ru/'", () ->
+                open("https://boxberry.ru/"));
+
+        step("Ввод текста поиска", () ->
+                mainPage.searchInput(data.searchText)
+        );
+
+        step("Проверка результата поиска", () ->
+            mainPage.resultSearch(data.searchText)
+        );
     }
 
 }

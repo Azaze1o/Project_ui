@@ -1,37 +1,39 @@
 package ru.boxberry.tests;
 
-import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
+import org.junit.jupiter.api.BeforeEach;
 import ru.boxberry.helpers.Attach;
-import ru.boxberry.properties.SystemProperties;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import ru.boxberry.properties.WebDriverProvider;
 
 public class TestBase {
     @BeforeAll
     static void configure() {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
+        WebDriverProvider.configure();
+        Selenide.clearBrowserCookies();
+
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("enableVNC", true);
         capabilities.setCapability("enableVideo", true);
+    }
 
-        Configuration.browserCapabilities = capabilities;
-        Configuration.browser = SystemProperties.browser();
-        Configuration.browserVersion = SystemProperties.browserVersion();
-        Configuration.browserSize = SystemProperties.browserSize();
-        //Configuration.remote="https://user1:1234@selenoid.autotests.cloud/wd/hub";
-        //if (!SystemProperties.remote().equals("")) {
-            Configuration.remote = SystemProperties.remote();
-        //}
+    @BeforeEach
+    void addListener() {
+        SelenideLogger.addListener("allure", new AllureSelenide());
     }
 
     @AfterEach
     void addAttachments() {
-        Attach.screenshotAs("Last Screenshot");
+        Attach.screenshotAs("Last screenshot");
         Attach.pageSource();
         Attach.browserConsoleLogs();
         Attach.addVideo();
     }
+
+
 }
