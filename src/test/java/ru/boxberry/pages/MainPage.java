@@ -7,6 +7,8 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
+import ru.boxberry.tests.TestData;
+
 public class MainPage {
 
     public SelenideElement
@@ -40,6 +42,11 @@ public class MainPage {
 
     public MainPage resultSearch(String text){
         $("h1.pageTitle__title").shouldHave(text("Результаты поиска «"+text+"»"));
+        return this;
+    }
+
+    public MainPage openMainPage() {
+        open(TestData.baseUrl);
         return this;
     }
 }

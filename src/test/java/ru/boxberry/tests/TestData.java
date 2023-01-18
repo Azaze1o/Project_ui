@@ -8,4 +8,6 @@ public class TestData {
 
     public String searchText="Доставка";
 
+    public static final String baseUrl = "https://boxberry.ru/";
+
 }
