@@ -23,7 +23,7 @@ public class MainTests extends TestBase {
     @DisplayName("Проверка контактов в Екатеринбурге")
     void checkContactTest() {
         step("Открыть 'https://boxberry.ru/'", () ->
-                mainPage.openMainPage());
+                open("https://boxberry.ru/"));
 
         step("Открыть выбор городов", () -> {
             $(".town__link").click();
@@ -43,7 +43,7 @@ public class MainTests extends TestBase {
     @DisplayName("Проверка отслеживания посылки")
     void checkTrackBoxTest() {
         step("Открыть 'https://boxberry.ru/'", () ->
-                mainPage.openMainPage());
+                open("https://boxberry.ru/"));
 
         step("Открыть раздел отслеживания посылок'", () -> {
             $(byText("Доставка")).hover();
@@ -60,7 +60,7 @@ public class MainTests extends TestBase {
     @DisplayName("Выбор города")
     void chooseCityTest() {
         step("Открыть 'https://boxberry.ru/'", () ->
-                mainPage.openMainPage());
+                open("https://boxberry.ru/"));
 
         step("Город должен отображаться", () -> {
             $(".town__link").shouldBe(visible);
@@ -78,7 +78,7 @@ public class MainTests extends TestBase {
     @DisplayName("Проверка главной страницы")
     void checkTitleTest() {
         step("Открыть главную страницу 'https://boxberry.ru/'", () ->
-                mainPage.openMainPage());
+                open("https://boxberry.ru/"));
 
         step("Страница называется 'Boxberry - служба доставки для интернет-магазинов и частных лиц.'", () -> {
             String expectedTitle = "Boxberry – служба доставки для интернет-магазинов и частных лиц.";
@@ -93,7 +93,7 @@ public class MainTests extends TestBase {
     @DisplayName("Открытие вкладки во всплывающем меню")
     void navMenuTest() {
         step("Открыть 'https://boxberry.ru/'", () ->
-                mainPage.openMainPage());
+                open("https://boxberry.ru/"));
 
         step("Выбираем вкладку в навигационном меню", () ->
                 mainPage.chooseNavItem(data.titleNavItem));
@@ -106,7 +106,7 @@ public class MainTests extends TestBase {
     @DisplayName("Открытие вкладок на главной странице")
     void stableMenuTest() {
         step("Открыть 'https://boxberry.ru/'", () ->
-                mainPage.openMainPage());
+                open("https://boxberry.ru/"));
 
         step("Выбираем вкладку на главной странице", () ->
                 mainPage.chooseMenuList(data.titleMenuItem)
@@ -122,7 +122,7 @@ public class MainTests extends TestBase {
     @DisplayName("Поиск по сайту")
     void costCalcTest() {
         step("Открыть 'https://boxberry.ru/'", () ->
-                mainPage.openMainPage());
+                open("https://boxberry.ru/"));
 
         step("Ввод текста поиска", () ->
                 mainPage.searchInput(data.searchText)
