@@ -4,17 +4,17 @@ import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.Keys;
 
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class MainPage {
 
     public SelenideElement
-            catalogNav = $("a[text()='Доставка ']"),
-            titleNavItem = $("h1[text()='Доставка посылок по России']");
+            titleNavItem = $("h1");
 
     public MainPage chooseNavItem(String value) {
-        catalogNav.hover();
-        $("a[text()='" + value + "']").click();
+        $(byText("Доставка")).hover();
+        $(byText(value)).click();
         return this;
     }
 
@@ -24,7 +24,7 @@ public class MainPage {
     }
 
     public MainPage chooseMenuList(String value) {
-        $x("//div[@class='header__items']//a[text()='Бизнес-партнерам']").click();
+        $(byText("Бизнес-партнерам")).click();
         return this;
     }
 
