@@ -12,10 +12,12 @@ public class WebDriverProvider {
         Configuration.browser = WebDriverProvider.config.browser();
         Configuration.browserVersion = WebDriverProvider.config.browserVersion();
 
-        String remoteUrl = WebDriverProvider.config.remote();
-        if (remoteUrl != null) {
-            Configuration.remote = remoteUrl;
-        }
+        Configuration.remote="https://user1:1234@selenoid.autotests.cloud/wd/hub";
+
+//        String remoteUrl = WebDriverProvider.config.remote();
+//        if (remoteUrl != null) {
+//            Configuration.remote = remoteUrl;
+//        }
 
 
     }
