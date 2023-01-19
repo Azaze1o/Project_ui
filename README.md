@@ -24,9 +24,7 @@
 <code><img width="5%" title="Junit5" src="images/logo/Junit5.svg"></code>
 <code><img width="5%" title="GitHub" src="images/logo/GitHub.svg"></code>
 <code><img width="5%" title="Allure Report" src="images/logo/Allure.svg"></code>
-<code><img width="5%" title="Allure TestOps" src="images/logo/Allure_TO.svg"></code>
 <code><img width="5%" title="Jenkins" src="images/logo/Jenkins_logo.svg"></code>
-<code><img width="5%" title="Jira" src="images/logo/Jira.svg"></code>
 <code><img width="5%" title="Telegram" src="images/logo/Telegram.svg"></code>
 </p>
 
@@ -38,6 +36,9 @@
 - Выбор города 
 - Проверка отслеживания посылки
 - Проверка контактов в Екатеринбурге
+- Открытие вкладки во всплывающем меню
+- Открытие вкладок на главной странице
+- Поиск по сайту
 
 ## :computer: Запуск тестов из терминала
 
@@ -95,8 +96,3 @@ gradle clean test
 <p align="center">
 <img title="Telegram Notifications" src="images/notification.png">
 </p>
-
-## <img width="4%" title="Selenoid" src="images/logo/Selenoid.svg"> Пример запуска теста в Selenoid
-
-К каждому тесту в отчете прилагается видео.
-
