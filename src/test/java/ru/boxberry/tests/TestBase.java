@@ -11,22 +11,21 @@ import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import ru.boxberry.properties.WebDriverProvider;
 
+import static com.codeborne.selenide.Selenide.open;
+import static io.qameta.allure.Allure.step;
+
 public class TestBase {
     @BeforeAll
     static void configure() {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
         WebDriverProvider.configure();
-        Selenide.clearBrowserCookies();
-        Configuration.holdBrowserOpen = true;
-
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("enableVNC", true);
-        capabilities.setCapability("enableVideo", true);
     }
 
     @BeforeEach
     void addListener() {
         SelenideLogger.addListener("allure", new AllureSelenide());
+        step("Открыть 'https://boxberry.ru/'", () ->
+                open("https://boxberry.ru/"));
     }
 
     @AfterEach
@@ -35,5 +34,6 @@ public class TestBase {
         Attach.pageSource();
         Attach.browserConsoleLogs();
         Attach.addVideo();
+        Selenide.closeWebDriver();
     }
 }

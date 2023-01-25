@@ -6,6 +6,5 @@ public class TestData {
 
     public String titleMenuItem="Бизнес-партнерам";
 
-    public String searchText="Доставка";
 
 }
